@@ -15,11 +15,11 @@ class Login extends StatelessWidget {
           children: [
             Text(
               'BIG PICTURE',
-              style: theme.textTheme.headlineLarge,
+              style: theme.textTheme.headlineMedium,
             ),
             Text(
               '모든 일에 큰그림을 그려보세요',
-              style: theme.textTheme.bodyMedium,
+              style: theme.textTheme.bodySmall,
             ),
             const SizedBox(
               height: 100,
