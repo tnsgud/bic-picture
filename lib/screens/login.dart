@@ -1,5 +1,11 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -25,7 +31,23 @@ class Login extends StatelessWidget {
               height: 100,
             ),
             TextButton.icon(
-              onPressed: () => Navigator.pushNamed(context, '/home'),
+              onPressed: () async {
+                var callbackUrl = 'big-picture';
+
+                if (!kIsWeb && Platform.isWindows) {
+                  callbackUrl = 'http://localhost:8000/auth.html';
+                }
+
+                final baseUrl = dotenv.env['BASE_URL'];
+                final resultUrl = await FlutterWebAuth2.authenticate(
+                  url: '$baseUrl/auth/google',
+                  callbackUrlScheme: callbackUrl,
+                );
+
+                storeAuthData(url: resultUrl);
+
+                const store = FlutterSecureStorage();
+              },
               icon: FaIcon(
                 FontAwesomeIcons.google,
                 size: theme.textTheme.bodyMedium?.fontSize,
@@ -39,6 +61,28 @@ class Login extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void storeAuthData({required String url}) async {
+    const store = FlutterSecureStorage();
+    var queryParameters = Uri.parse(url).queryParameters;
+
+    await store.write(
+      key: 'accessToken',
+      value: queryParameters['access_token']!,
+    );
+    await store.write(
+      key: 'refreshToken',
+      value: queryParameters['refresh_token']!,
+    );
+    await store.write(
+      key: 'accessExpiredAt',
+      value: queryParameters['access_expired_at']!,
+    );
+    await store.write(
+      key: 'refreshExpiredAt',
+      value: queryParameters['refresh_expired_at']!,
     );
   }
 }
