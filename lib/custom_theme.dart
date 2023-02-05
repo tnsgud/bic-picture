@@ -25,15 +25,15 @@ class CustomTheme {
             color: textColor,
           ),
           bodyLarge: TextStyle(
-            fontSize: 40,
+            fontSize: 25,
             color: textColor,
           ),
           bodyMedium: TextStyle(
-            fontSize: 30,
+            fontSize: 20,
             color: textColor,
           ),
           bodySmall: TextStyle(
-            fontSize: 20,
+            fontSize: 15,
             color: textColor,
           ),
         ),

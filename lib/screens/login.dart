@@ -1,11 +1,6 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -32,6 +27,7 @@ class Login extends StatelessWidget {
             ),
             TextButton.icon(
               onPressed: () async {
+                /*
                 var callbackUrl = 'big-picture';
 
                 if (!kIsWeb && Platform.isWindows) {
@@ -45,8 +41,12 @@ class Login extends StatelessWidget {
                 );
 
                 storeAuthData(url: resultUrl);
+                */
+                storeAuthData(
+                    url:
+                        'https://localhost:8000?access_token=1&refresh_token=2&access_expired_at=12&refresh_expired_at=34');
 
-                const store = FlutterSecureStorage();
+                Navigator.pushNamed(context, '/home');
               },
               icon: FaIcon(
                 FontAwesomeIcons.google,

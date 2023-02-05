@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:big_picture/screens/login.dart';
@@ -29,11 +28,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log('hello world');
     return MaterialApp(
       theme: CustomTheme().lightTheme,
       darkTheme: CustomTheme().darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       builder: (context, child) => ResponsiveWrapper.builder(
         child,
