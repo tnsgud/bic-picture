@@ -1,17 +1,20 @@
+import 'package:big_picture/widgets/card_list_widget.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Column(
           children: [
+            const SizedBox(
+              height: 50,
+            ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
@@ -44,6 +47,20 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            const CardList(title: '최근 활동한 커뮤니티', list: [
+              '1시간 전 키뮤 이름 - 내용',
+              '1시간 전 키뮤 이름 - 내용',
+              '1시간 전 키뮤 이름 - 내용',
+              '1시간 전 키뮤 이름 - 내용',
+              '1시간 전 키뮤 이름 - 내용',
+              '1시간 전 키뮤 이름 - 내용',
+              '1시간 전 키뮤 이름 - 내용',
+              '1시간 전 키뮤 이름 - 내용',
+              '1시간 전 키뮤 이름 - 내용',
+            ]),
             TextButton.icon(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(Icons.logout),
@@ -51,6 +68,26 @@ class Home extends StatelessWidget {
             )
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            label: 'home',
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            label: 'login',
+            icon: Icon(Icons.calendar_month),
+          ),
+          BottomNavigationBarItem(
+            label: 'list',
+            icon: Icon(Icons.list),
+          ),
+          BottomNavigationBarItem(
+            label: 'account',
+            icon: Icon(Icons.account_circle_outlined),
+          ),
+        ],
       ),
     );
   }

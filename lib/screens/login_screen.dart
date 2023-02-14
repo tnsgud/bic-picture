@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +26,44 @@ class Login extends StatelessWidget {
             const SizedBox(
               height: 100,
             ),
-            TextButton.icon(
-              onPressed: () async {
-                /*
-                var callbackUrl = 'big-picture';
+            ElevatedButton.icon(
+              icon: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SvgPicture.asset(
+                  'assets/images/google.svg',
+                  height: 50,
+                ),
+              ),
+              label: Text(
+                'Sign in with Google',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.scaffoldBackgroundColor,
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/home');
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton.icon(
+              icon: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: FaIcon(
+                  FontAwesomeIcons.solidComment,
+                  color: theme.scaffoldBackgroundColor,
+                  size: 50,
+                ),
+              ),
+              label: Text(
+                'Sign in with kakao',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.scaffoldBackgroundColor,
+                ),
+              ),
+              onPressed: () {
+                /*var callbackUrl = 'big-picture';
 
                 if (!kIsWeb && Platform.isWindows) {
                   callbackUrl = 'http://localhost:8000/auth.html';
@@ -41,12 +76,16 @@ class Login extends StatelessWidget {
                 );
 
                 storeAuthData(url: resultUrl);
-                */
                 storeAuthData(
                     url:
-                        'https://localhost:8000?access_token=1&refresh_token=2&access_expired_at=12&refresh_expired_at=34');
+                        'https://localhost:8000?access_token=1&refresh_token=2&access_expired_at=12&refresh_expired_at=34');*/
 
                 Navigator.pushNamed(context, '/home');
+              },
+            ),
+            /*TextButton.icon(
+              onPressed: () async {
+                
               },
               icon: FaIcon(
                 FontAwesomeIcons.google,
@@ -57,7 +96,7 @@ class Login extends StatelessWidget {
                 style:
                     theme.textTheme.bodyMedium?.copyWith(color: Colors.white),
               ),
-            )
+            )*/
           ],
         ),
       ),

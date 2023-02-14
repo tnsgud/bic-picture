@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:big_picture/screens/login.dart';
-import 'package:big_picture/screens/home.dart';
 import 'package:big_picture/custom_theme.dart';
+import 'package:big_picture/screens/home_screen.dart';
+import 'package:big_picture/screens/login_screen.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/login',
       routes: {
-        '/login': (context) => const Login(),
-        '/home': (context) => const Home(),
+        '/login': (context) => const LoginScreen(),
+        '/home': (context) => const HomeScreen(),
       },
     );
   }

@@ -18,6 +18,27 @@
       "flutterMode": "debug",
       "type": "dart",
       "deviceId": "windows"
+    },
+    {
+      "name": "ios",
+      "request": "launch",
+      "flutterMode": "debug",
+      "type": "dart",
+      "deviceId": "FF29BA66-3106-4169-B542-F5143CC7E65E"
+    },
+    {
+      "name": "mac",
+      "request": "launch",
+      "flutterMode": "debug",
+      "type": "dart",
+      "deviceId": "macos"
+    },
+    {
+      "name": "android",
+      "request": "launch",
+      "flutterMode": "debug",
+      "type": "dart",
+      "deviceId": "emulator-5554"
     }
   ]
 }
