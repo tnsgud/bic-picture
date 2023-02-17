@@ -8,65 +8,64 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 48,
-                    height: 48,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.amber,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 48,
+                      height: 48,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.amber,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '사용자 이름',
-                        style: theme.textTheme.bodyLarge
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '사용자 설정한 명언',
-                        style: theme.textTheme.bodySmall
-                            ?.copyWith(color: Colors.grey),
-                      ),
-                    ],
-                  )
-                ],
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '사용자 이름',
+                          style: theme.textTheme.bodyLarge
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '사용자 설정한 명언',
+                          style: theme.textTheme.bodySmall
+                              ?.copyWith(color: Colors.grey),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const CardList(title: '최근 활동한 커뮤니티', list: [
-              '1시간 전 키뮤 이름 - 내용',
-              '1시간 전 키뮤 이름 - 내용',
-              '1시간 전 키뮤 이름 - 내용',
-              '1시간 전 키뮤 이름 - 내용',
-              '1시간 전 키뮤 이름 - 내용',
-              '1시간 전 키뮤 이름 - 내용',
-              '1시간 전 키뮤 이름 - 내용',
-              '1시간 전 키뮤 이름 - 내용',
-              '1시간 전 키뮤 이름 - 내용',
-            ]),
-            TextButton.icon(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.logout),
-              label: const Text('logout'),
-            )
-          ],
+              const SizedBox(
+                height: 20,
+              ),
+              const CardList(title: '최근 활동한 커뮤니티', list: [
+                '1시간 전 키뮤 이름 - 내용',
+                '1시간 전 키뮤 이름 - 내용',
+                '1시간 전 키뮤 이름 - 내용',
+                '1시간 전 키뮤 이름 - 내용',
+                '1시간 전 키뮤 이름 - 내용',
+                '1시간 전 키뮤 이름 - 내용',
+                '1시간 전 키뮤 이름 - 내용',
+                '1시간 전 키뮤 이름 - 내용',
+                '1시간 전 키뮤 이름 - 내용',
+              ]),
+              TextButton.icon(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.logout),
+                label: const Text('logout'),
+              )
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
