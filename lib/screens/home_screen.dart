@@ -1,8 +1,10 @@
-import 'package:big_picture/widgets/card_list_widget.dart';
+import 'package:big_picture/widgets/calendar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+  final store = const FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: [
               Padding(
@@ -48,22 +50,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const CardList(title: '최근 활동한 커뮤니티', list: [
-                '1시간 전 키뮤 이름 - 내용',
-                '1시간 전 키뮤 이름 - 내용',
-                '1시간 전 키뮤 이름 - 내용',
-                '1시간 전 키뮤 이름 - 내용',
-                '1시간 전 키뮤 이름 - 내용',
-                '1시간 전 키뮤 이름 - 내용',
-                '1시간 전 키뮤 이름 - 내용',
-                '1시간 전 키뮤 이름 - 내용',
-                '1시간 전 키뮤 이름 - 내용',
-              ]),
-              TextButton.icon(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.logout),
-                label: const Text('logout'),
-              )
+              const Calendar(),
             ],
           ),
         ),

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -11,6 +10,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+
+  final _store = const FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,23 @@ class LoginScreen extends StatelessWidget {
                     color: theme.scaffoldBackgroundColor,
                   ),
                 ),
-                onPressed: () {
+                onPressed: () async {
+                  var callbackUrl = 'big-picture';
+
+                  if (!kIsWeb && Platform.isWindows) {
+                    callbackUrl = 'http://localhost:8000/auth.html';
+                  }
+
+                  final baseUrl = dotenv.env['BASE_URL'];
+                  final resultUrl = await FlutterWebAuth2.authenticate(
+                    url: '$baseUrl/auth/google',
+                    callbackUrlScheme: callbackUrl,
+                  );
+
+                  _storeAuthData(url: resultUrl);
+
+                  print(await _store.readAll());
+
                   Navigator.pushNamed(context, '/home');
                 },
               ),
@@ -70,25 +87,6 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () async {
-                  var callbackUrl = 'big-picture';
-
-                  if (!kIsWeb && Platform.isWindows) {
-                    callbackUrl = 'http://localhost:8000/auth.html';
-                  }
-
-                  final baseUrl = dotenv.env['BASE_URL'];
-                  // final result = await launchUrl(
-                  //     Uri.parse('$baseUrl/auth/google'),
-                  //     mode: LaunchMode.inAppWebView);
-                  final resultUrl = await FlutterWebAuth2.authenticate(
-                    url: '$baseUrl/auth/google',
-                    callbackUrlScheme: callbackUrl,
-                  );
-
-                  log(resultUrl);
-
-                  // storeAuthData(url: resultUrl);
-
                   Navigator.pushNamed(context, '/home');
                 },
               ),
@@ -113,25 +111,24 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  void storeAuthData({required String url}) async {
-    const store = FlutterSecureStorage();
+  void _storeAuthData({required String url}) async {
     var queryParameters = Uri.parse(url).queryParameters;
 
-    await store.write(
+    await _store.write(
       key: 'accessToken',
-      value: queryParameters['access_token']!,
+      value: queryParameters['access_token'] ?? 'access token is null',
     );
-    await store.write(
+    await _store.write(
       key: 'refreshToken',
-      value: queryParameters['refresh_token']!,
+      value: queryParameters['refresh_token'] ?? 'refresh token is null',
     );
-    await store.write(
+    await _store.write(
       key: 'accessExpiredAt',
-      value: queryParameters['access_expired_at']!,
+      value: queryParameters['access_expired_at']!.substring(0, 19),
     );
-    await store.write(
+    await _store.write(
       key: 'refreshExpiredAt',
-      value: queryParameters['refresh_expired_at']!,
+      value: queryParameters['refresh_expired_at']!.substring(0, 19),
     );
   }
 }
