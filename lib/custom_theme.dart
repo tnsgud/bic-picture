@@ -48,11 +48,12 @@ class CustomTheme {
               ),
             ),
           ),
-          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            selectedIconTheme: IconThemeData(
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: scaffoldBackgroundColor,
+            selectedIconTheme: const IconThemeData(
               color: Colors.amber,
             ),
-            unselectedIconTheme: IconThemeData(
+            unselectedIconTheme: const IconThemeData(
               color: Colors.pink,
             ),
           )
