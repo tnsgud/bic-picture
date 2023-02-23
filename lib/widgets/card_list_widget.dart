@@ -1,6 +1,8 @@
+import 'package:big_picture/constants/gaps.dart';
+import 'package:big_picture/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
-class CardList extends StatelessWidget {
+class CardList extends StatelessWidget with Sizes, Gaps {
   final String title;
   final List<String> list;
 
@@ -14,10 +16,10 @@ class CardList extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return SizedBox(
-      height: 200,
+      height: size96,
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(size10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -30,7 +32,7 @@ class CardList extends StatelessWidget {
               ),
               Expanded(
                 child: ListView.separated(
-                  padding: const EdgeInsets.all(0),
+                  padding: EdgeInsets.all(size0),
                   itemCount: list.length,
                   separatorBuilder: (context, index) => const Divider(),
                   itemBuilder: (context, index) => Text(

@@ -1,7 +1,8 @@
+import 'package:big_picture/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
-class CustomTheme {
-  final Color _primaryColor = const Color(0xffc25eff);
+class CustomTheme with Sizes {
+  final Color _primaryColor = const Color.fromARGB(255, 4, 4, 4);
 
   ThemeData _defaultTheme({
     required Color textColor,
@@ -13,62 +14,53 @@ class CustomTheme {
           scaffoldBackgroundColor: scaffoldBackgroundColor,
           textTheme: TextTheme(
             headlineLarge: TextStyle(
-              fontSize: 60,
+              fontSize: size60,
               fontWeight: FontWeight.bold,
               color: textColor,
             ),
             headlineMedium: TextStyle(
-              fontSize: 50,
+              fontSize: size48 + size2,
               fontWeight: FontWeight.bold,
               color: textColor,
             ),
             headlineSmall: TextStyle(
-              fontSize: 40,
+              fontSize: size40,
               fontWeight: FontWeight.bold,
               color: textColor,
             ),
             bodyLarge: TextStyle(
-              fontSize: 25,
+              fontSize: size20 + size5,
               color: textColor,
             ),
             bodyMedium: TextStyle(
-              fontSize: 20,
+              fontSize: size20,
               color: textColor,
             ),
             bodySmall: TextStyle(
-              fontSize: 15,
+              fontSize: size10 + size5,
               color: textColor,
             ),
+          ),
+          cardTheme: CardTheme(
+            color: scaffoldBackgroundColor,
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
               backgroundColor: textColor,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(size20),
               ),
             ),
           ),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            backgroundColor: scaffoldBackgroundColor,
-            selectedIconTheme: const IconThemeData(
+          canvasColor: scaffoldBackgroundColor,
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedIconTheme: IconThemeData(
               color: Colors.amber,
             ),
-            unselectedIconTheme: const IconThemeData(
+            unselectedIconTheme: IconThemeData(
               color: Colors.pink,
             ),
-          )
-          // iconTheme: IconThemeData(color: iconColor),
-          // textButtonTheme: TextButtonThemeData(
-          //   style: TextButton.styleFrom(
-          //     foregroundColor: Colors.white,
-          //     backgroundColor: _primaryColor,
-          //     shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.circular(30.0),
-          //     ),
-          //     padding: const EdgeInsets.all(20),
-          //   ),
-          // ),
-          );
+          ));
 
   ThemeData get lightTheme => _defaultTheme(
         textColor: Colors.black,
@@ -76,19 +68,6 @@ class CustomTheme {
         scaffoldBackgroundColor: Colors.white,
       ).copyWith(
         primaryColor: _primaryColor,
-        // colorScheme: const ColorScheme(
-        //   background: Colors.white,
-        //   brightness: Brightness.light,
-        //   primary: Colors.black,
-        //   onPrimary: Colors.black,
-        //   secondary: Colors.black,
-        //   onSecondary: Colors.black,
-        //   error: Colors.black,
-        //   onError: Colors.black,
-        //   onBackground: Colors.black,
-        //   surface: Colors.black,
-        //   onSurface: Colors.black,
-        // ),
       );
 
   ThemeData get darkTheme => _defaultTheme(

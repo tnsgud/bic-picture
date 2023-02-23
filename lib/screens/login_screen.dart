@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:big_picture/constants/gaps.dart';
+import 'package:big_picture/constants/sizes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,7 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget with Sizes, Gaps {
   const LoginScreen({super.key});
 
   final _store = const FlutterSecureStorage();
@@ -31,15 +33,13 @@ class LoginScreen extends StatelessWidget {
                 '모든 일에 큰그림을 그려보세요',
                 style: theme.textTheme.bodySmall,
               ),
-              const SizedBox(
-                height: 100,
-              ),
+              gapV96,
               ElevatedButton.icon(
                 icon: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(size10),
                   child: SvgPicture.asset(
                     'assets/images/google.svg',
-                    height: 50,
+                    height: size40 + size10,
                   ),
                 ),
                 label: Text(
@@ -68,16 +68,14 @@ class LoginScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/home');
                 },
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              gapV20,
               ElevatedButton.icon(
                 icon: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(size10),
                   child: FaIcon(
                     FontAwesomeIcons.solidComment,
                     color: theme.scaffoldBackgroundColor,
-                    size: 50,
+                    size: size40 + size10,
                   ),
                 ),
                 label: Text(
@@ -90,20 +88,6 @@ class LoginScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/home');
                 },
               ),
-              /*TextButton.icon(
-                onPressed: () async {
-                  
-                },
-                icon: FaIcon(
-                  FontAwesomeIcons.google,
-                  size: theme.textTheme.bodyMedium?.fontSize,
-                ),
-                label: Text(
-                  '구글로 로그인',
-                  style:
-                      theme.textTheme.bodyMedium?.copyWith(color: Colors.white),
-                ),
-              )*/
             ],
           ),
         ),

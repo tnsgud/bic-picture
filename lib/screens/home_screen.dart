@@ -1,9 +1,11 @@
+import 'package:big_picture/constants/gaps.dart';
+import 'package:big_picture/constants/sizes.dart';
 import 'package:big_picture/widgets/calendar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatelessWidget with Sizes, Gaps {
+  HomeScreen({super.key});
   final store = const FlutterSecureStorage();
 
   @override
@@ -12,23 +14,21 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: size10),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(size10),
                 child: Row(
                   children: [
-                    const SizedBox(
-                      width: 48,
-                      height: 48,
-                      child: CircleAvatar(
+                    SizedBox(
+                      width: size48,
+                      height: size48,
+                      child: const CircleAvatar(
                         backgroundColor: Colors.amber,
                       ),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    gapH20,
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -47,9 +47,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              gapV20,
               const Calendar(),
             ],
           ),
