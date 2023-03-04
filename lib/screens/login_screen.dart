@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:big_picture/constants/gaps.dart';
 import 'package:big_picture/constants/sizes.dart';
+import 'package:big_picture/screens/home_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -14,6 +15,28 @@ class LoginScreen extends StatelessWidget with Sizes, Gaps {
   const LoginScreen({super.key});
 
   final _store = const FlutterSecureStorage();
+
+  void _onLoginButton(BuildContext context) async {
+    var callbackUrl = 'big-picture';
+
+    if (!kIsWeb && Platform.isWindows) {
+      callbackUrl = 'http://localhost:8000/auth.html';
+    }
+
+    final baseUrl = dotenv.env['BASE_URL'];
+    final resultUrl = await FlutterWebAuth2.authenticate(
+      url: '$baseUrl/auth/google',
+      callbackUrlScheme: callbackUrl,
+    );
+
+    _storeAuthData(url: resultUrl);
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,25 +71,7 @@ class LoginScreen extends StatelessWidget with Sizes, Gaps {
                     color: theme.scaffoldBackgroundColor,
                   ),
                 ),
-                onPressed: () async {
-                  var callbackUrl = 'big-picture';
-
-                  if (!kIsWeb && Platform.isWindows) {
-                    callbackUrl = 'http://localhost:8000/auth.html';
-                  }
-
-                  final baseUrl = dotenv.env['BASE_URL'];
-                  final resultUrl = await FlutterWebAuth2.authenticate(
-                    url: '$baseUrl/auth/google',
-                    callbackUrlScheme: callbackUrl,
-                  );
-
-                  _storeAuthData(url: resultUrl);
-
-                  print(await _store.readAll());
-
-                  Navigator.pushNamed(context, '/home');
-                },
+                onPressed: () => _onLoginButton(context),
               ),
               gapV20,
               ElevatedButton.icon(
